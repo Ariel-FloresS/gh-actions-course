@@ -1,0 +1,31 @@
+name: 01-Building-Blocks
+on: push
+
+jobs:
+
+  echo-hello:
+    runs-on: ubuntu-latest
+    steps:
+      
+      - name: say hellow
+        run: echo "Hellow world -  Ariel"
+
+  echo_goodbye:
+    runs-on: ubuntu-latest
+    steps:
+
+      - name: Failed step
+        run: |
+          echo "I will fail"
+          exit 1
+
+      - name: Say goodbye
+        run: echo "Goodbye - Ariel"
+
+
+
+
+
+
+
+
