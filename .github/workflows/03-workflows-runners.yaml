@@ -30,9 +30,8 @@ jobs:
         steps:
 
             - name: SHOW OS
-              shell: bash
               run: |
-                echo "This job is running on Mac"
+                echo "This job is running on Macos"
                 echo "Runner OS: $RUNNER_OS" 
 
 
