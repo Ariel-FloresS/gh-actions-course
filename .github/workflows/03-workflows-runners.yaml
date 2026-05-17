@@ -1,0 +1,15 @@
+name: 03-Worfows-Runners
+
+on:
+    push:
+
+jobs:
+
+    ubuntu-runner:
+
+        runs-on: ubuntu-latest
+        steps:
+            - name: SHOW OS
+              run: |
+                echo "This job is running on Ubuntu"
+                echo "Runner OS: $RUNNER_OS"
