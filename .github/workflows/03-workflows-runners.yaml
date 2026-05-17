@@ -26,7 +26,7 @@ jobs:
 
     mac-runner:
 
-        runs-on: mac-latest
+        runs-on: macos-latest
         steps:
 
             - name: SHOW OS
