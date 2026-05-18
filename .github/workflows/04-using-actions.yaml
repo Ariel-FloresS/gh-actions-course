@@ -19,4 +19,5 @@ jobs:
             - name: Printing Folders
               run: |
                 pwd
-                ls
+                ls 
+                ls -la 
