@@ -1,0 +1,22 @@
+name: 04 - Using - Actions
+
+on:
+    push:
+
+jobs:
+    
+    build:
+
+        runs-on: ubuntu-latest
+
+        # 0. Checkout the code from the repository
+        # 1. install the dependencies of our reac aplications
+        # 2. execute the automated test
+
+        steps:
+            - name: Checkout code directory
+              uses: actions/checkout@v4
+            - name: Printing Folders
+              run: |
+                pwd
+                ls
