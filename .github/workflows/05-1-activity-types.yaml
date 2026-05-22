@@ -1,0 +1,16 @@
+name: 05-1-activity-types
+
+on:
+    pull_request:
+        types:
+            - opened
+            - synchronize
+        branches:
+            - main
+
+jobs:
+
+    echo:
+        runs-on: ubuntu-lstest
+        steps:
+            - run: echo "Running whenever a PR is opened or syscronozed and base branch is main"
