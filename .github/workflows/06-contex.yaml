@@ -65,8 +65,8 @@ jobs:
         steps:
             - name: Print Env Variables
               run: |
-                 echo "Workflow env: ${{env.MY_WORKFLOW_VAR}}" 
-                 echo "Overwitten env: ${{env.MY_OVERWRITTEN_VAR}}"
+                 echo "Workflow env: $MY_WORKFLOW_VAR" 
+                 echo "Overwitten env: $MY_OVERWRITTEN_VAR"
 
 
             
