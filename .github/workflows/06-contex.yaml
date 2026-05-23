@@ -12,7 +12,7 @@ jobs:
             - name: Display Information
               run: |
                 echo "Event name: ${{github.event_name}}"
-                echo: "Ref: ${{github.ref}}"
+                echo "Ref: ${{github.ref}}"
                 echo "SHA: ${{github.sha}}"
                 echo "Repo: ${{ github.repository }}"
                 echo "Branch: ${{ github.ref_name }}"
