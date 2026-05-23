@@ -9,11 +9,18 @@ on:
              debug:
                 type: boolean
                 default: false 
+                
+env:
+    MY_WORKFLOW_VAR: "workflow-ariel"
+    MY_OVERWRITTEN_VAR:  "workflow-ariel" 
 
 jobs:
 
     echo-data:
         runs-on: ubuntu-latest
+        env:
+            MY_JOB_VAR: "job"
+            MY_OVERWRITTEN_VAR: "job"
         steps:
             - name: Display Information
               run: |
@@ -35,5 +42,23 @@ jobs:
             - name: Retrieve Variable 
               run: |
                 echo "Variable value: ${{vars.MY_VAR }}"
+
+            - name: Print Env Variables
+
+              env:
+                MY_OVERWRITTEN_VAR: "step"
+
+              run: |
+                 echo "Workflow env: ${{env.MY_WORKFLOW_VAR}}" 
+                 echo "Overwitten env: ${{env.MY_OVERWRITTEN_VAR}}"
+                 echo ""
+
+            - name: Print Env Variables-2
+
+              run: |
+                 echo "Workflow env: ${{env.MY_WORKFLOW_VAR}}" 
+                 echo "Overwitten env: ${{env.MY_OVERWRITTEN_VAR}}"
+                 echo ""
+
 
             
