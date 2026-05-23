@@ -1,0 +1,33 @@
+name: 06 - Context
+
+
+on: 
+    push:
+
+jobs:
+
+    echo-data:
+        runs-on: ubuntu-latest
+        steps:
+            - name: Display Information
+              run: |
+                echo "Event name: ${{github.event_name}}"
+                echo: "Ref: ${{github.ref}}"
+                echo "SHA: ${{github.sha}}"
+                echo "Repo: ${{ github.repository }}"
+                echo "Branch: ${{ github.ref_name }}"
+                echo "Autor: ${{ github.actor }}"
+                echo "Workflow: ${{github.workflow}}"
+                echo "Run Id: ${{github.run_id }}"
+                echo "Run Number: ${{github.run_number}}"
+
+            - name: Runners
+              run: |
+                echo "OS: ${{ runner.os }}"
+                echo "Directorio temp: ${{ runner.temp }}"
+
+            - name: Retrieve Variable 
+              run: |
+                echo "Variable value: ${{vars.MY_VAR }}"
+
+            
