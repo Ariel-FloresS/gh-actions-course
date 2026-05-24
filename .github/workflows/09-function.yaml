@@ -3,7 +3,7 @@ name: 09 -  Using Functions
 run-name: 09 - Function
 
 on: 
-    pull_request:
+    #pull_request:
     workflow_dispatch:
 
             
@@ -26,11 +26,11 @@ jobs:
               if: ${{ !cancelled() && contains(github.event.pull_request.title, 'fix') }}
               run: echo "I am a bug fix"
 
-            - name: Sleep for 20 seconds
-              run: sleep 20 
+            #- name: Sleep for 20 seconds
+            #  run: sleep 20 
 
-            - name: Failing Step
-              run: exit 1
+            #- name: Failing Step
+            #  run: exit 1
             
             - name: I will be skipped
               if: ${{ success() }}
