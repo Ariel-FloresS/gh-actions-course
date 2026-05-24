@@ -21,7 +21,7 @@ jobs:
               run: |
                 echo "Trigger by: ${{ github.event_name }}"
                 echo "Branch: ${{ github.ref }}"
-                echo "SHA commit: ${{ github.sha }}
+                echo "SHA commit: ${{ github.sha }}"
                 echo "Runner OS: ${{ runner.os }}"
             
             - name: "[debug] print when trigger from main"
