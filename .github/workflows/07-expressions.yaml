@@ -25,7 +25,7 @@ jobs:
                 echo "Runner OS: ${{ runner.os }}"
             
             - name: "[debug] print when trigger from main"
-              if: ${{ inputs.debug && github.ref == 'refs/heands/main'}}
+              if: ${{ inputs.debug && github.ref == 'refs/heads/main'}}
               run: |
                 echo "I was trigger from main "
 
