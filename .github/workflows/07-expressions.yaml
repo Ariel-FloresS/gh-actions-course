@@ -1,0 +1,33 @@
+name: 07 - Expressions
+
+on:
+    push:
+    workflow_dispatch:
+        inputs:
+            debug:
+                type: boolean
+                default: false
+
+            
+
+
+jobs:
+
+    echo:
+        runs-on: ubuntu-latest
+        steps:
+            - name: "[debug] Print stat-tup data"
+              if: ${{inputs.debug}}
+              run: |
+                echo "Trigger by: ${{ github.event_name }}"
+                echo "Branch: ${{ github.ref }}"
+                echo "SHA commit: ${{ github.sha }}
+                echo "Runner OS: ${{ runner.os }}"
+            
+            - name: "[debug] print when trigger from main"
+              if: ${{ inputs.debug && github.ref == 'refs/heands/main'}}
+              run: |
+                echo "I was trigger from main "
+
+            - name: Gretting
+              run: echo "Hello world"
