@@ -1,0 +1,27 @@
+name: Deploy problem
+
+on:
+    workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    outputs:
+      compile_result: ${{ steps.compile.conclusion }}  
+    steps:
+      - name: Compile Code
+        id: compile                                   
+        run: echo "Compiling..."
+
+      - name: Run Tests
+        run: exit 1                                     
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: build
+    if: |
+      always() &&
+      needs.build.outputs.compile_result == 'success'
+    steps:
+      - name: Deploy Application
+        run: echo "Deploying..."
