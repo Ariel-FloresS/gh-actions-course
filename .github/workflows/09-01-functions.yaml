@@ -1,0 +1,17 @@
+name: 09 - exercise
+
+on:
+    push:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: First Step
+        run: exit 1
+      - name: Second Step
+        if: ${{ failure() }}
+        run: echo "This step runs if the first step failed."
+      - name: Third Step
+        if: ${{ success() }}
+        run: echo "This step runs if the first step succeeded."
