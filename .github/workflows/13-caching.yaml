@@ -21,46 +21,120 @@ on:
 
 jobs:
 
-    build:
-        runs-on: ubuntu-latest
-        defaults:
+    install-deps:
+      runs-on: ubuntu-latest
+
+      defaults:
             run:
                 working-directory: 13-caching/react-app
 
+      outputs:
+        deps-cache-key: ${{ steps.cache-key.outputs.CACHE_KEY }}
+
+      steps:
+
+        # 1.    Checkout the code 
+        - name: Checkout code
+          uses: actions/checkout@v4
+
+        # 2.    Install dependencies
+
+        - name: Setup Node
+          uses: actions/setup-node@v4
+          with: 
+            node-version: ${{ inputs.node-version }}
+
+        - name: Calculate cache key
+          id: cache-key
+          run: |
+            echo "CACHE_KEY=debs-node-modules-${{ hashFiles('13-caching/react-app/package.json') }}" >> "$GITHUB_OUTPUT"
+
+        - name: Download cached Decpendencies
+          if: ${{ inputs.use-cache }}
+          uses: actions/cache@v3
+          id: cache
+          with:
+            key: ${{ steps.cache-key.outputs.CACHE_KEY }}
+            path: 13-caching/react-app/node_modules
+
+        - name: Install Dependencies
+          if: steps.cache.outputs.cache-hit != 'true'
+          run: npm install
+
+
+
+    lint-test:
+        runs-on: ubuntu-latest
+
+        needs: install-deps
+        
+        
+        defaults:
+          run:
+              working-directory: 13-caching/react-app
+
         steps:
-            # 1.    Checkout the code 
-            - name: Checkout code
-              uses: actions/checkout@v4
 
-            # 2.    Install dependencies
+          - name: Checkout code
+            uses: actions/checkout@v4
 
-            - name: Setup Node
-              uses: actions/setup-node@v4
-              with: 
-                node-version: ${{ inputs.node-version }}
+          - name: Setup Node
+            uses: actions/setup-node@v4
+            with: 
+              node-version: ${{ inputs.node-version }}
 
-            - name: Download cached Decpendencies
-              if: ${{ inputs.use-cache }}
-              uses: actions/cache@v3
-              id: cache
-              with:
-                key: debs-node-modules-${{ hashFiles('13-caching/react-app/package.json') }}
-                path: 13-caching/react-app/node_modules
+          - name: Download cached Decpendencies
+            if: ${{ inputs.use-cache }}
+            uses: actions/cache@v3
+            id: cache
+            with:
+              key: ${{ needs.install-deps.outputs.deps-cache-key }}
+              path: 13-caching/react-app/node_modules
 
-            - name: Install Dependencies
-              if: steps.cache.outputs.cache-hit != 'true'
-              run: npm install
-             
-            # 3.   Linting, formatting, unit testing, building   
-            - name: Testing 
-              run: npm run test
+  
+          # 3.   Linting, formatting, unit testing, building   
+          - name: Testing 
+            run: npm run test
+
+          - name: Linting
+            run: echo "Linting ....."
+
             
-            - name: Building
-              run: npm run build
+
+    build:
+      runs-on: ubuntu-latest
+
+      needs: install-deps
+        
+        
+      defaults:
+        run:
+          working-directory: 13-caching/react-app
+
+      steps:
+
+
+        - name: Checkout code
+          uses: actions/checkout@v4
+
+        - name: Setup Node
+          uses: actions/setup-node@v4
+          with: 
+            node-version: ${{ inputs.node-version }}
+
+        - name: Download cached Decpendencies
+          if: ${{ inputs.use-cache }}
+          uses: actions/cache@v3
+          id: cache
+          with:
+            key: ${{ needs.install-deps.outputs.deps-cache-key }}
+            path: 13-caching/react-app/node_modules
             
-            # 4.    Deploy to nonprod
-            - name: Deploying to NONPROD
-              run: echo "Deploying to NONPROD ..."
+        - name: Building
+          run: npm run build
+
+        - name: Deploying to NONPROD
+          run: echo "Deploying to NONPROD ..."
 
             
 
