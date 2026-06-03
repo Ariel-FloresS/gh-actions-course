@@ -31,6 +31,9 @@ jobs:
               id: build-id
               run: echo "status_carlos=${{ inputs.building-status }}" >> "$GITHUB_OUTPUT"
 
+            - name: Re-Print GITHUB_OUTPUT
+              run: echo "$GITHUB_OUTPUT"
+
             
 
     deploy:
