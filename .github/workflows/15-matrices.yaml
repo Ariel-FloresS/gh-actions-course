@@ -9,7 +9,7 @@ jobs:
     name: ${{ matrix.os}}-${{ matrix.node-version}}
     runs-on: ${{ matrix.os }}
     strategy:
-      fail-fast: false # if it is true if any job fails all the jobs is going to skip
+      fail-fast: True # if it is true if any job fails all the jobs is going to skip
       matrix: 
         node-version: [18.x, 20.x, 21.x]
         os:
