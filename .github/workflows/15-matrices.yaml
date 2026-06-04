@@ -69,10 +69,15 @@ jobs:
           - shape: circle
             opacity: 100
 
+          - color: green
+            shape: circle
+            size: medium
 
         # the exclude command is executed before than the includ3e command: exclude --> include 
         exclude: 
-          - opacity: 75
+          - color: green
+            shape: circle
+
 
 
     steps:
