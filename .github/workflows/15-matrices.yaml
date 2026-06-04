@@ -9,11 +9,21 @@ jobs:
     name: ${{ matrix.os}}-${{ matrix.node-version}}
     runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false # if it is true if any job fails all the jobs is going to skip
       matrix: 
         node-version: [18.x, 20.x, 21.x]
         os:
           - ubuntu-latest
           - windows-latest
+        include: 
+          # add a the combination: ubuntu-latest-16.x (just this conbination - just add this new job)
+          - os: ubuntu-latest
+            node-version: 16.x
+
+          # add a new job: ubuntu-latest.21.x/experimental
+          - os: ubuntu-latest
+            node-version: 21.x
+            tag: experimental
 
     steps:
 
@@ -22,8 +32,18 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
 
+      - name: Fail if experimental
+        if: matrix.tag == 'experimental'
+        run: exit 1
+
+
       - name: Perfom some test
-        run: echo "Running test on OS ${{ matrix.os }} and NodeJS ${{ matrix.node-version}}"
+        run: |
+          echo "Running test on OS ${{ matrix.os }} and NodeJS ${{ matrix.node-version}}"
+          sleep 10
+
+      - name: Upload test results
+        run: "Uploading test result"
 
 
 
