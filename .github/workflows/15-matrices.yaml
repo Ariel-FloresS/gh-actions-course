@@ -69,6 +69,12 @@ jobs:
           - shape: circle
             opacity: 100
 
+
+        # the exclude command is executed before than the includ3e command: exclude --> include 
+        exclude: 
+          - opacity: 75
+
+
     steps:
       - name: Dummy step
         run: echo " ${{ matrix.color }}-${{ matrix.shape }}-${{ matrix.size }}-${{ matrix.opacity }} "
