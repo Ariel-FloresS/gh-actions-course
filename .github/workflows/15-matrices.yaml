@@ -55,15 +55,17 @@ jobs:
         shape: [circle, square]
         size: [small, large]
         include:
-          
-          - opacity: 50
 
+          - opacity: 50
+          # todo lo que tenga red se le añade un triangle si no tiene shape
           - color: red
             shape: triangle
 
+            # todo lo que tenga red y no tenga opacity se le agregara un 75
           - color: red
             opacity: 75
-
+          
+            # todo lo que tenga circle se le agregara un opacity (es overwrite)
           - shape: circle
             opacity: 100
 
