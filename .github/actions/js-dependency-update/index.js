@@ -50,7 +50,7 @@ async function run() {
     }
 
     core.info(`Base branch is ${baseBranch}`);
-    core.info(`Head branch is ${headBranch}`);
+    core.info(`target branch is ${targetBranch}`);
     core.info(`Working directory is ${workingDir}`);
 
     await exec.exec('npm update', [], {
