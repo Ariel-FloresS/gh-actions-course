@@ -6,10 +6,23 @@ name: 17 - 3 - Custom Actions - Docker
 on:
   workflow_dispatch:
     inputs:
+
       url:
-        type: string
-        default: 'https://www.google.com'
+        type: choice 
+        options: 
+          - 'https://www.google.com'
+          - 'https://www.google-inbvalid-url.com'
+          - 'invalid-googlewerdfw.com'
    
+      max_trial:
+        description: Maximun number of trials until action fails
+        default: '10'
+        required: false
+
+      delay:
+        description: Delay in seconds detween trials
+        default: '5'
+        required: false
       
 
 jobs:
@@ -21,4 +34,6 @@ jobs:
         uses: ./.github/actions/docker-ping-url
         with:
             url: ${{ inputs.url}}
+            max_trials: ${{ inputs.max_trial }}
+            delay: ${{ inputs.delay }}
         
