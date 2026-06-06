@@ -13,4 +13,4 @@ WORKDIR /app
 #install all the dependencies
 RUN uv sync --locked
 
-CMD ["python", "main.py"]
+CMD ["python", "/app/main.py"]
