@@ -1,0 +1,25 @@
+name: Ping URL
+description:  Ping URL until maximum trials have exceeded. If result is not 200 until then, fails the Authentication
+
+inputs:
+
+  url:
+    description: URL to Ping
+    requered: true
+
+  max_trial:
+
+    description: Maximun number of trials until action fails
+    default: '10'
+    required: false
+
+  delay:
+    description: Delay in seconds detween trials
+    default: '5'
+    required: false
+
+
+runs:
+  using: docker 
+  image: Dockerfile
+  
