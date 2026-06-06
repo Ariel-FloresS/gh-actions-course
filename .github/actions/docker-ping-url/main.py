@@ -16,8 +16,9 @@ def ping_url(url, delay, max_trials):
                 print(f"Website {url} is unreachable. Retrying in {delay} secconds ...")
                 time.sleep(delay)
                 trials +=1
-            except requests.exception.MissingSchema:
-                print(f" Invalid Url format: {url}. Make sure the URL has a valid shema (e.g, http:// or https://)")
+        except requests.exception.MissingSchema:
+            print(f" Invalid Url format: {url}. Make sure the URL has a valid shema (e.g, http:// or https://)")
+            
     return False
 
 
