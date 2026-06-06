@@ -1,0 +1,24 @@
+# See 17-custom-actions/README.md for more information
+# about how to create and use custom actions in workflows.
+
+name: 17 - 3 - Custom Actions - Docker
+
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        type: string
+        default: 'https://www.google.com'
+   
+      
+
+jobs:
+  ping-url:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Ping URL
+        uses: ./.github/actions/docker-ping-url
+        with:
+            url: ${{ inputs.url}}
+        
