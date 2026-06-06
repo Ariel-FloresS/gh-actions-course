@@ -15,7 +15,7 @@ on:
             
             working-dir:
                 type: string
-                default: './17-custom-actions/react-app'
+                default: '17-custom-actions/react-app'
       
 
 
