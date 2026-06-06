@@ -49,9 +49,9 @@ async function run() {
         return;
     }
 
-    logger.debug(`Base branch is ${baseBranch}`);
-    logger.debug(`Head branch is ${headBranch}`);
-    logger.debug(`Working directory is ${workingDir}`);
+    core.info(`Base branch is ${baseBranch}`);
+    core.info(`Head branch is ${headBranch}`);
+    core.info(`Working directory is ${workingDir}`);
 
     await exec.exec('npm update', [], {
         cwd: workingDir
@@ -66,11 +66,11 @@ async function run() {
     );
 
     if (gitStatus.stdout.length > 0) {
-        logger.debug('There are updates available!');
+        core.info('There are updates available!');
 
 
     }else {
-        logger.info('No updates at this point in time.');
+        core.info('No updates at this point in time.');
     }
 }
 run()
