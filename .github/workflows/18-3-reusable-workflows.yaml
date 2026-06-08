@@ -16,6 +16,8 @@ jobs:
     e2e-tests:
         # uses: <Owner>/<repository>/.github/workflows/<workflow_name>@<version/branch/tag/sha>
         uses: Ariel-FloresS/github-actions-ourse-example-e2e/.github/workflows/e2e.yaml@main
+        secrets:
+            access-token: ${{secrets.GH_TOKEN_CYPRESS }}
 
 
     
